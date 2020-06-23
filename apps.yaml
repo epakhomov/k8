@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: counter
+  name: counter
+spec:
+  selector:
+    matchLabels:
+      app: counter
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: counter
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: counter-image
+          image: salesengineering.azurecr.io/counter-image:1
+          ports:
+          env:
+      imagePullSecrets:
+        # TODO: The next field is the name of the secrets that contain your AZ credentials.
+        - name: mamacrsecret
